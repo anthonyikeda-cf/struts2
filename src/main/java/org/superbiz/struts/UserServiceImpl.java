@@ -22,6 +22,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserServiceImpl implements UserService {
@@ -33,8 +34,13 @@ public class UserServiceImpl implements UserService {
         manager.persist(user);
     }
 
-    public User find(int id) {
-        return manager.find(User.class, id);
+    public Optional<User> find(long id) {
+        User found = manager.find(User.class, id);
+
+        if (found != null) {
+            return Optional.of(found);
+        }
+        return Optional.empty();
     }
 
     public List<User> findAll() {

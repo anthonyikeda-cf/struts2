@@ -18,12 +18,13 @@
 package org.superbiz.struts;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
     public void add(User user);
 
-    public User find(int id);
+    public Optional<User> find(long id);
 
     public List<User> findAll();
 }
